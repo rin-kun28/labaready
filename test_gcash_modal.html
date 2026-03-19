@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test GCash Modal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h4>🧺 GCash Payment Test</h4>
+                    </div>
+                    <div class="card-body text-center">
+                        <h5>Test the GCash InstaPay QR Code Modal</h5>
+                        <p class="text-muted">Click the button below to test the GCash payment modal with your uploaded QR code.</p>
+                        
+                        <button type="button" onclick="showGCashModal()" class="btn btn-success btn-lg">
+                            💳 Pay via GCash
+                        </button>
+                        
+                        <div class="mt-4">
+                            <h6>QR Code Status:</h6>
+                            <img src="uploads/gcash_qr_instapay.jpg" alt="QR Preview" style="width:100px; height:100px; object-fit:cover; border:1px solid #ddd; border-radius:5px;" 
+                                 onload="document.getElementById('status').innerHTML='✅ QR Code Loaded Successfully!'; document.getElementById('status').className='text-success';"
+                                 onerror="document.getElementById('status').innerHTML='❌ QR Code Not Found'; document.getElementById('status').className='text-danger';">
+                            <p id="status" class="mt-2 text-info">🔄 Loading QR Code...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GCash Modal -->
+    <div id="gcashModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center;">
+        <div style="background:white; padding:16px; width: 95%; max-width:360px; margin:auto; border-radius:8px; position:relative; box-shadow:0 10px 20px rgba(0,0,0,.2);">
+            <span onclick="closeGCashModal()" style="position:absolute; top:6px; right:10px; cursor:pointer; font-weight:bold; font-size:20px;">&times;</span>
+            <h4 style="text-align:center; margin: 6px 0 10px;">Scan to Pay via GCash</h4>
+            <div style="border:1px solid #e5e7eb; border-radius:6px; padding:10px; background:#f9fafb;">
+                <img id="gcashQrImg" src="uploads/gcash_qr_instapay.jpg" alt="InstaPay GCash QR Code"
+                     style="width:100%; height:auto; display:block; border-radius:4px; max-width:280px; margin:0 auto;"
+                     onerror="this.style.display='none'; document.getElementById('gcashMissingNote').style.display='block';">
+                <div id="gcashMissingNote" style="display:none; color:#ef4444; font-size:13px; text-align:center; padding:20px;">
+                    <p><strong>QR Code Not Found</strong></p>
+                    <p>Please save your InstaPay QR code as:</p>
+                    <code>uploads/gcash_qr_instapay.jpg</code>
+                </div>
+            </div>
+            <div style="text-align:center; margin:8px 0; font-size:12px; color:#6b7280;">
+                <strong>InstaPay QR Code</strong><br>
+                Scan with any banking app or GCash
+            </div>
+            <div style="display:flex; gap:8px; margin-top:10px;">
+                <a href="uploads/gcash_qr_instapay.jpg" download="instapay_qr.jpg" class="btn btn-outline-primary btn-sm" style="flex:1; text-align:center;">
+                    Download QR
+                </a>
+                <button type="button" class="btn btn-primary btn-sm" style="flex:1;" onclick="window.open('uploads/gcash_qr_instapay.jpg','_blank')">
+                    View Full Size
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showGCashModal() {
+            document.getElementById("gcashModal").style.display = "flex";
+        }
+        
+        function closeGCashModal() {
+            document.getElementById("gcashModal").style.display = "none";
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById("gcashModal").addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeGCashModal();
+            }
+        });
+    </script>
+</body>
+</html>
