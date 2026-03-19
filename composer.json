@@ -1,0 +1,26 @@
+{
+    "name": "laundry-management-system",
+    "description": "Laundry Management System - Compatible with latest XAMPP",
+    "type": "project",
+    "require": {
+        "php": "^8.0",
+        "capcom6/android-sms-gateway": "^2.0",
+        "symfony/http-client": "^6.0 || ^7.0",
+        "psr/http-client": "^1.0",
+        "nyholm/psr7": "^1.8"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        },
+        "platform": {
+            "php": "8.0"
+        },
+        "optimize-autoloader": true
+    },
+    "autoload": {
+        "classmap": [
+            "admin_class.php"
+        ]
+    }
+}
